@@ -60,12 +60,47 @@
             xFinal = xInicial;
             yFinal = yInicial;
         }
-        
+        //mouse
+        function dibujar(e) {
+            mouseX = e.clientX-canvas.offsetLeft;
+            mouseY = e.clientY-canvas.offsetTop;
+            console.log("X = " + mouseX + " ,Y =  " + mouseY);
+            circulo(mouseX, mouseY)
+        }
+        function circulo(x, y) {
+            ctx.strokeStyle = document.getElementById("color").value;
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.arc(x, y, 40, 0, 2 * Math.PI);
+            ctx.stroke();
+        }
 
         function limpiar() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
         }
+        var dibujando = 0;
+        canvas.addEventListener("mousedown", function (){
+            dibujando = 1;
+        });
+        canvas.addEventListener("mousemove", linea)
+        canvas.addEventListener("mouseup", function (){
+            dibujando = 0;
+        })
         
+        function linea (e){
+            xInicial = e.clientX - canvas.offsetLeft - 10;
+            yInicial = e.clientY - canvas.offsetTop - 10;
+            if(dibujando){
+                ctx.strokeStyle = document.getElementById("color").value;
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(xFinal, yFinal)
+            ctx.lineTo(xInicial, yInicial)
+            ctx.stroke();
+            }
+            xFinal = xInicial;
+            yFinal = yInicial;
+        }
     </script>
 
 </body>
