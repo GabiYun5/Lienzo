@@ -44,11 +44,11 @@
         }
         canvas.addEventListener("touchstart", touch);
         canvas.addEventListener("touchmove", touchmove);
-        function touch(){
+        function touch(e){
             xFinal = e.touches[0].clientX - canvas.offsetLeft - 10;
             yFinal = e.touches[0].clientY - canvas.offsetTop - 10;
         }
-        function touchmove(){
+        function touchmove(e){
             xInicial = e.touches[0].clientX - canvas.offsetLeft - 10;
             yInicial = e.touches[0].clientY - canvas.offsetTop - 10;
             ctx.strokeStyle = document.getElementById("color").value;
